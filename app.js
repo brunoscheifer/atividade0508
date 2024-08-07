@@ -24,37 +24,47 @@ switch (opcao) {
         exibirMenu()
         break;
     case '2':
+        let rua = prompt('Qual o nome da rua?: ')
         
-        let rua = prompt('Qual rua deseja adicionar?: ');
-        let bairro = prompt('Qual bairro está a residencia?: ');
-        let numero = prompt('Qual o numero da residencia?: ');
-        let moradores = prompt('Quais os moradores da casa?: ');
-
-        adicionarResidencias({rua, bairro, numero, moradores})
-        console.log('Residencia adicionada!')
+        let moradores = []
+        let morador
+        while ((morador = prompt('Moradores (ou deixe em branco para sair): '))) {
+            moradores.push(morador);
+        }
         
+        let bairro = prompt('Qual o nome do bairro?: ')
+        
+        adicionarResidencias({ rua, bairro, moradores })
+        
+        console.log('adicionado')
         exibirMenu()
         break;
     case '3':
-        listarContatos()
-        index = parseInt(prompt('Qual residencia deseja atualizar?: ')) - 1
+        listarResidencias()
 
-        let novaRua = prompt('Nome da rua?: ')
-        let novoBairro = prompt('Qual o nome do bairro?: ')
-        let novoNumero = prompt('Qual o novo numero?:')
-        let novosMoradores = prompt('Qual os moradores novos?: ')
-
-        atualizarResidencias(index, {rua: novaRua, bairro: novoBairro, numero: novoNumero, moradores: novosMoradores})
-        console.log('Residencia atualizada!')
-
+        let id = parseInt(prompt('Qual usuario deseja atualizar?: '))
+        let novaRua = prompt('Qual o novo nome da rua: ')
+        
+        let novosMoradores = []
+        let novoMorador
+        
+        while((novoMorador = prompt('Qual o novo/s morador/es?: '))){
+            novosMoradores.push(novoMorador)
+        }
+        let novoBairro = prompt('Qual o novo nome do bairro?: ')
+        
+        atualizarResidencias(id, {rua: novaRua, bairro: novoBairro, moradores: novosMoradores})
+        
+        console.log('Usuario atualizado!')
         exibirMenu()
         break;
     case '4':
-        
-        index = parseInt(prompt('Qual residencia deseja remover?: ')) - 1
+        listarResidencias()
 
-        removerResidencia(index);
-        console.log('Residencia removida!')
+        let id2 = parseInt(prompt('Qual residencia deseja remover?: '))
+
+        removerResidencia(id2)
+        console.log('Removido')
 
         exibirMenu()
         break;

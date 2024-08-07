@@ -1,12 +1,19 @@
 let residencias = require('./residencias');
 
-function listarContatos() {
-    residencias.forEach((residencia, index) => {
-        console.log(`${index + 1}. Rua: ${residencia.rua}
-        Bairro: ${residencia.bairro}
-        Numero: ${residencia.numero}
-        Moradores: ${residencia.moradores}`)
-    })       
+function listarResidencias() {
+    for(i = 0; i < residencias.length; i++) {
+        const residencia = residencias[i]
+    
+        console.log(`
+        ID: ${residencia.id}
+        Rua: ${residencia.rua}
+        Bairro: ${residencia.bairro}`)
+            
+        for (let o = 0; o < residencia.moradores.length; o++) {
+            console.log(` ${o + 1}. ${residencia.moradores[o]}`);
+        }
+        console.log('');
+    }
 }
 
-module.exports = listarContatos
+module.exports = listarResidencias
